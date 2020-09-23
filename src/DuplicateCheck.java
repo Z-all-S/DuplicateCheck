@@ -5,16 +5,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 public class DuplicateCheck {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("请输入论文原文文件的绝对路径！");
-        String path1 = input.next();
+        if(args.length!=3){
+            System.out.println("地址输入有误！");
+            return;
+        }
+
+        String path1 = args[0];
         int[] count1 = getCount(path1);
-        System.out.println("请输入待检测版本的绝对路径！");
-        String path2 = input.next();
+        String path2 = args[1];
         int[] count2 = getCount(path2);
         // 通过空间向量法，计算两个向量的余弦值，所得即为重复率
         double molecule=0;
@@ -31,10 +32,8 @@ public class DuplicateCheck {
         denominator = Math.sqrt(temp1 * temp2);
         double result =molecule / denominator;
         String saveResult = String.valueOf(Math.floor(result*100)/100);//保留两位小数
-        System.out.println("请输入检测结果储存的绝对路径！");
-        String path3 = input.next();
+        String path3 = args[2];
         saveResult(path3, saveResult);
-        input.close();
     }
 
     public static void saveResult(String path, String result) { // 保存结果数据
