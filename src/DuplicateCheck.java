@@ -34,6 +34,10 @@ public class DuplicateCheck {
         String saveResult = String.valueOf(Math.floor(result*100)/100);//保留两位小数
         String path3 = args[2];
         saveResult(path3, saveResult);
+        System.out.println("源文件地址："+path1);
+        System.out.println("待检测文件地址："+path2);
+        System.out.println("重复率："+(Math.floor(result*100)/100));
+        System.out.println("结果保存地址："+path3);
     }
 
     public static void saveResult(String path, String result) { // 保存结果数据
